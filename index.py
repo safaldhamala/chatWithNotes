@@ -11,7 +11,7 @@ import ollama
 from tqdm import tqdm
 
 
-DEFAULT_NOTES_DIR = "/home/reza/Desktop/notes/Notes_txt"
+DEFAULT_NOTES_DIR = "/home/reza/Desktop/notes/chatWithNotes/Notes_txt"
 DEFAULT_INDEX_DIR = "/home/reza/Desktop/notes/chatWithNotes/vector_index"
 DEFAULT_EMBEDDING_MODEL = "nomic-embed-text"  # run: `ollama pull nomic-embed-text`
 
