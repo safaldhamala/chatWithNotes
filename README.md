@@ -1,6 +1,6 @@
 ## Chat with Your Notes (CLI)
 
-Turn a folder of `.txt` notes into a fully local chatbot you can query from the command line. This project builds a FAISS vector index over your notes using local embeddings from Ollama, then answers questions with a local chat model using retrieval-augmented generation (RAG).
+Turn a folder of `.txt` notes into a fully local chatbot you can chat with. This project builds a FAISS vector index over your notes using local embeddings from Ollama, then answers questions with a local chat model using retrieval-augmented generation (RAG).
 
 ### What you get
 - **Local-first**: Runs entirely on your machine (no cloud calls)
@@ -11,20 +11,20 @@ Turn a folder of `.txt` notes into a fully local chatbot you can query from the 
 ## Prerequisites
 - **Python** 3.9+
 - **pip**
-- **Ollama** installed and running (background service)
+- **Ollama** installed and running
   - Install from the official site: [Ollama website](https://ollama.com)
   - After installing, ensure `ollama` works in your terminal: `ollama --version`
 
 ## Install dependencies
 ```bash
-cd /home/reza/Desktop/notes/chatWithNotes
+cd chatWithNotes
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ## Prepare your notes
-- Put your `.txt` files under `/home/reza/Desktop/notes/Notes_txt` (default). The tool scans this directory recursively.
+- Put your `.txt` files under `chatWithNotes/Notes_txt` (default). The tool scans this directory recursively.
 - Prefer plain text. If you have PDFs/Markdown, convert them to `.txt` first.
 - You can use a different folder by passing `--notes_dir` when indexing (see below).
 
@@ -36,8 +36,8 @@ This project uses two models via Ollama:
 Pull them locally:
 ```bash
 ollama pull nomic-embed-text
-ollama pull llama3:8b  # example chat model; you can use another installed model
-# (Optional) If you want to try the default tag used in code:
+ollama pull llama3:8b  # example lightweight chat model; you can use another installed model, I used gpt-oss::20b
+# If using gpt-oss::20b
 # ollama pull gpt-oss:20b
 ```
 
@@ -47,12 +47,12 @@ ollama list
 ```
 
 ## 1) Build the FAISS index over your notes
-By default, the script reads notes from `/home/reza/Desktop/notes/Notes_txt` and writes the index to `/home/reza/Desktop/notes/chatWithNotes/vector_index`.
+By default, the script reads notes from `chatWithNotes/Notes_txt` and writes the index to `chatWithNotes/vector_index`.
 
 ```bash
-python /home/reza/Desktop/notes/chatWithNotes/index.py \
-  --notes_dir /home/reza/Desktop/notes/Notes_txt \
-  --index_dir /home/reza/Desktop/notes/chatWithNotes/vector_index \
+python index.py \
+  --notes_dir Notes_txt \
+  --index_dir vector_index \
   --embedding_model nomic-embed-text \
   --chunk_size_words 300 \
   --overlap_words 60
@@ -62,23 +62,23 @@ Outputs:
 - `index.faiss` and `metadata.json` saved under `--index_dir`.
 
 Notes:
-- Use absolute paths as shown above to avoid path issues.
+- Use absolute paths to avoid path issues.
 - You can change chunking parameters for larger/smaller context windows.
 
 ## 2) Chat with your indexed notes (CLI)
 Interactive chat:
 ```bash
-python /home/reza/Desktop/notes/chatWithNotes/chat.py \
-  --index_dir /home/reza/Desktop/notes/chatWithNotes/vector_index \
+python chat.py \
+  --index_dir vector_index \
   --chat_model llama3:8b
 ```
 
 One-off question (non-interactive):
 ```bash
-python /home/reza/Desktop/notes/chatWithNotes/chat.py \
-  --index_dir /home/reza/Desktop/notes/chatWithNotes/vector_index \
+python chat.py \
+  --index_dir vector_index \
   --chat_model llama3:8b \
-  "What does my Note12 say about project deadlines?"
+  "What reminders have I put in my notes?"
 ```
 
 While in interactive mode, you can use:
