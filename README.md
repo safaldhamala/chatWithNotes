@@ -103,6 +103,14 @@ If you prefer to change the code defaults instead of passing flags:
 - `index.py` splits your notes into overlapping word chunks, embeds each with the embedding model, normalizes to unit length, and stores them in a FAISS Inner Product index. Metadata (source path, chunk indices, etc.) is saved to `metadata.json`.
 - `chat.py` retrieves the most relevant chunks for your question, assembles a context block, and prompts a local chat model. Answers include inline citations like `[SOURCE: path#chunk]` to show provenance.
 
-You're all set—drop in your `.txt` notes, index them, and start chatting locally!
+## How to get your iPhone notes in .txt format
+- Open Notes app
+- Select multiple notes (iPhone only allows moving 10-15 items at a time, so select 10-15).
+- Hold them up with your thumb, and open a folder in Files app while holding the Notes with your thumb
+- Release the Notes into the folder of your choosing
+- Repeat until you're done with all your notes
+- This saves the notes in a .rtf format
+- Access the folder via your iCloud in your PC, download all the .rtf files
+- Write a Python script to convert .rtf to .txt format, or use any other way you may find online
 
 
