@@ -9,7 +9,7 @@ Turn a folder of `.txt` notes (or any set of .txt files) into a fully local chat
 - **Simple CLI**: Ask questions interactively or one-off
 
 ## Prerequisites
-- **Python** 3.9+
+- **Python**
 - **pip**
 - **Ollama** installed and running
   - Install from the official site: [Ollama website](https://ollama.com)
