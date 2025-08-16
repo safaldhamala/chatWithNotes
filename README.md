@@ -1,9 +1,9 @@
 ## Chat with Your Notes (CLI)
 
-Turn a folder of `.txt` notes into a fully local chatbot you can chat with. This project builds a FAISS vector index over your notes using local embeddings from Ollama, then answers questions with a local chat model using retrieval-augmented generation (RAG).
+Turn a folder of `.txt` notes (or any set of .txt files) into a fully local chatbot you can chat with. This project builds a FAISS vector index over your notes using local embeddings from Ollama, then answers questions with a local chat model using retrieval-augmented generation (RAG).
 
 ### What you get
-- **Local-first**: Runs entirely on your machine (no cloud calls)
+- **Local-first**: Runs entirely on your machine (no cloud calls, everything is private)
 - **Bring your own notes**: Point it at any folder of `.txt` files
 - **Fast retrieval**: FAISS index + cosine similarity
 - **Simple CLI**: Ask questions interactively or one-off
